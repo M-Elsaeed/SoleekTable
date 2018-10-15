@@ -1,0 +1,83 @@
+<!-- Complete Validation -->
+<section class="wrapper">
+
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <div class="centered-text heading">
+    Add a new Product
+  </div>
+  <div class="container centered-text">
+    <img class="soleek-logo">
+  </div>
+  <div class="container">
+    <div *ngIf="allTouchedInvalid(addingForm)" class="alert alert-danger fadeInLeft">
+      Please Complete the Red-bordered form fields Correctly
+    </div>
+    <form [formGroup]="addingForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="ProductSKU">Product SKU</label>
+          <input formControlName="sku" type="text" class="form-control" id="ProductSKU" placeholder="ex. TS270PNK">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="productName">Product Name</label>
+          <input formControlName="name" type="text" class="form-control" id="productName" placeholder="Product Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageURL">Product Image URL</label>
+        <input formControlName="image" type="url" class="form-control" id="imageURL" placeholder="ex. http://www.soleeklab.com/wp-content/uploads/Logo">
+      </div>
+      <div #catsForm class="form-group">
+        <label for="Category">Category Name (Separated by commas)</label>
+        <input  formControlName="categories" type="text" class="form-control" id="Category"
+          placeholder="ex. Home Appliance/Toys/...">
+      </div>
+      <div class="form-row">
+        <button class="btn btn-success" (click)="addCategory(catsForm)">Add Category</button>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="price">Price</label>
+          <div>
+            <i class="fas fa-dollar-sign"></i>
+            <input formControlName="price" type="number" class="form-control price-tag" id="price" placeholder="ex. 50">
+          </div>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="month">Month</label>
+          <select formControlName="month" id="month" class="form-control">
+            <option selected>Choose...</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>3</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="Day">Day</label>
+          <input formControlName="day" min=1 max=31 type="number" class="form-control" id="Day" placeholder="ex. 24">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="year">Year</label>
+          <input formControlName="year" min=2018 max=2050 type="number" class="form-control" id="year" placeholder="ex. 2018">
+        </div>
+      </div>
+      <div class="btns-container">
+        <button type="submit" class="form-btn btn btn-primary">Add Product</button>
+        <button (click)="reset()" class="form-btn btn btn-danger">Reset Form</button>
+      </div>
+    </form>
+
+  </div>
+</section>
+<app-modal *ngIf="prodSubmitted"></app-modal>

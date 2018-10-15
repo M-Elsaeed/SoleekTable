@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+::-webkit-scrollbar {
+  width: 5px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+
+li {
+  outline: none;
+}
+
+.soleek-img {
+  width: 70%;
+  content: url(http://www.soleeklab.com/wp-content/uploads/2017/03/Untitled-2.png);
+}

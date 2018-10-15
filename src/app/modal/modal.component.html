@@ -1,0 +1,48 @@
+<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+<div class="opacity-container">
+</div>
+<div class="main-container fadeInLeft">
+
+
+
+  <div class="frame half">
+    <div style="position:relative;height: 80%;padding:10px;">
+      <img class="product-img" [src]="displayedProduct.image">
+    </div>
+    <p>SKU : {{displayedProduct.sku}}</p>
+  </div>
+
+  <div class="half2">
+    <div style="text-align:center">
+      <h1>{{displayedProduct.name}}</h1>
+      <br><br>
+    </div>
+
+    <div class="container">
+      <h4 class="inline-block">Price :<span class="invisible">ii</span></h4>
+      <p class="inline-block">
+        <i class="icon fas fa-dollar-sign"></i>
+        {{displayedProduct.price}}
+      </p>
+    </div>
+    <div class="container">
+      <h4 class="inline-block">Categories :<span class="invisible">ii</span></h4>
+      <span *ngFor="let cat of displayedProduct.categories">
+        <p class="tag inline-block">{{cat}}</p>
+        <span class="invisible">ii</span>
+      </span>
+    </div>
+    <div class="container">
+      <h4 class="inline-block">Date :<span class="invisible">ii</span></h4>
+      <p class="tag inline-block">{{displayedProduct.day}}</p>
+      <span>/</span>
+      <p class="tag inline-block">{{displayedProduct.month}}</p>
+      <span>/</span>
+      <p class="tag inline-block">{{displayedProduct.year}}</p>
+
+    </div>
+  </div>
+
+
+
+</div>

@@ -1,0 +1,46 @@
+.side-nav {
+  background-color: #343a40 !important;
+  height: 100%;
+  position: fixed;
+  width: 20%;
+  border-top-right-radius: 100%;
+  border-bottom-right-radius: 100%;
+  text-align: center;
+  overflow-y: scroll;
+  margin-left: -18%;
+  z-index: 9999;
+}
+
+.side-nav:hover {
+  margin: 0;
+}
+
+
+.list {
+  padding: 0;
+  list-style: none;
+  font-family: 'Mali', cursive;
+  font-size: 30px;
+  color: bisque;
+  width: 80%;
+  text-align: left;
+  margin: 0 auto;
+  margin-top: 70%;
+}
+
+.list-item {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.list-item.active {
+  opacity: 1;
+}
+
+.list-item:hover {
+  opacity: 1;
+}
+
+.fadeInLeft {
+  animation-duration: 1s;
+}
