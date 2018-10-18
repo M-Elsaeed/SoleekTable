@@ -1,19 +1,28 @@
 <link href="https://fonts.googleapis.com/css?family=Mali:600" rel="stylesheet">
-<div #main class="side-nav fadeInLeft" (click)="animExp(main)" >
-  <ul class="list">
-    <li class="list-item" routerLinkActive="active" routerLink="/Home">
-      <i class="myIcon fas fa-home"></i> Home
-    </li>
-    <li class="list-item" routerLinkActive="active" routerLink="/Add">
-      <i class="myIcon fas fa-plus-square "></i> Products
-    </li>
-    <li class="list-item" routerLinkActive="active" routerLink="/Edit">
-      <i class="myIcon fas fa-edit "></i> Products
-    </li>
-    <li class="list-item" routerLinkActive="active" routerLink="/Remove">
-      <i class="myIcon fas fa-eraser "></i> Products
-    </li>
-  </ul>
-  <img class="soleek-img">
-
+<div #main (click)='toggleNav(main,content)' class="my-nav animated">
+  <div #content class="main-container">
+    <div class="soleek-img-container">
+      <img class="soleek-img">
+    </div>
+    <ul class="list">
+      <li class="list-item" routerLinkActive="active" routerLink="/Home">
+        <i class="myIcon fas fa-home"></i> Home
+      </li>
+      <li class="list-item" routerLinkActive="active" routerLink="/Add">
+        <i class="myIcon fas fa-plus-square "></i> Products
+      </li>
+      <li class="list-item" routerLinkActive="active" routerLink="/Edit">
+        <i class="myIcon fas fa-edit "></i> Products
+      </li>
+      <li class="list-item" routerLinkActive="active" routerLink="/Remove">
+        <i class="myIcon fas fa-eraser "></i> Products
+      </li>
+    </ul>
+  </div>
+  <div #buttons class="btns-container" >
+    <i *ngIf="active" class="fas fa-chevron-up"></i>
+    <i *ngIf="!active" class="fas fa-chevron-down"></i>
+    <i *ngIf="active" class="fas fa-chevron-left"></i>
+    <i *ngIf="!active" class="fas fa-chevron-right"></i>
+  </div>
 </div>
