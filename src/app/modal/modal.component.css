@@ -3,7 +3,7 @@
   height: 100%;
   background-color: black;
   position: fixed;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -93,10 +93,57 @@ p {
   font-family: "Font Awesome 5 Free";
 }
 
-@media only screen and (max-device-width: 700px) {
+.fadeOutRight {
+  animation-name: fadeOutRight;
+  animation: 1s;
+  animation-fill-mode: forwards;
+}
+
+.prodImg-container {
+  position: relative;
+  text-align: center;
+  top: 20%;
+  height: 50%;
+  padding: 10px;
+}
+
+.SKU-container {
+  position: relative;
+  text-align: center;
+  top: 20%;
+  height: 20%;
+  padding: 10px;
+}
+
+@media only screen and (max-device-width: 1200px) {
+  .prodImg-container {
+    height: 200px;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+  }
 
   .half,
   .half2 {
     width: 90%;
+    margin-left: 0;
+  }
+
+  .main-container {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: auto;
+    max-height: 85%;
+    background-color: white;
+    overflow-y: scroll;
+    animation-duration: 1s;
   }
 }
