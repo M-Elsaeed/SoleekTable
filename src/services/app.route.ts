@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router'
  */
 import { HomeComponent } from '../app/home/home.component';
 import { AddingComponent } from '../app/adding/adding.component';
-import { ModalComponent } from '../app/modal/modal.component';
+import { EditComponent } from 'src/app/edit/edit.component';
 
 /**
  * Routes
@@ -16,8 +16,8 @@ const routes: Routes = [
     { path: '', redirectTo: 'Home', pathMatch: 'full' },
     { path: 'Home', component: HomeComponent },
     { path: 'Add', component: AddingComponent },
-    { path: 'Edit', component: ModalComponent },
-    { path: 'Remove', component: AddingComponent },
+    { path: 'Edit', component: EditComponent },
+    { path: 'Edit/:Delete', component: EditComponent },
     { path: '**', redirectTo: 'not-found' }
 ];
 
