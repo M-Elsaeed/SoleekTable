@@ -12,6 +12,7 @@ import { ModalComponent } from './modal/modal.component';
 import { KeysPipe } from '../objIterator.pipe'
 
 import { router } from '../services/app.route';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { router } from '../services/app.route';
     NavbarComponent,
     AddingComponent,
     KeysPipe,
-    ModalComponent
+    ModalComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
