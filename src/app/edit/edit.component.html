@@ -1,0 +1,123 @@
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+<section *ngIf="displayedProduct!=undefined;else productNotFound" class="wrapper fadeInLeft">
+  <div *ngIf="!deletionMode" class="centered-text heading">
+    Edit<br> {{displayedProduct.name}}
+  </div>
+  <div *ngIf="deletionMode" class="centered-text heading">
+    Delete<br> {{displayedProduct.name}} ?
+  </div>
+  <div class="container centered-text">
+    <img class="prod-Image" src="{{displayedProduct.image}}">
+  </div>
+  <div class="container">
+    <form [formGroup]="editingForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="ProductSKU">Product SKU</label>
+          <!-- disabled [value]= "this.displayedProduct.sku" -->
+          <input [readonly]="true" formControlName="sku" type="text" class="form-control" id="ProductSKU">
+          <div *ngIf="!deletionMode&&editingForm.controls.sku.invalid&&editingForm.controls.sku.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(editingForm.controls.sku.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="!deletionMode&&editingForm.controls.sku.valid" class="valid-field">Looks good!</div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="productName">Product Name</label>
+          <input [attr.disabled]="deletionMode ? 'disabled' : null" formControlName="name" type="text" class="form-control"
+            id="productName" placeholder="Product Name">
+          <div *ngIf="!deletionMode&&editingForm.controls.name.invalid&&editingForm.controls.name.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(editingForm.controls.name.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="!deletionMode&&editingForm.controls.name.valid" class="valid-field">Looks good!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageURL">Product Image URL</label>
+        <input [attr.disabled]="deletionMode ? 'disabled' : null" formControlName="image" type="url" class="form-control"
+          id="imageURL" placeholder="ex. http://www.soleeklab.com/wp-content/uploads/Logo.png">
+        <div *ngIf="!deletionMode&&editingForm.controls.image.invalid&&editingForm.controls.image.touched" class="invalid-field">
+          <p>Please meet the following requirement(s)</p>
+          <p *ngFor="let error of objKeys(editingForm.controls.image.errors)">{{error}} </p>
+        </div>
+        <div *ngIf="!deletionMode&&editingForm.controls.image.valid&&editingForm.controls.image.value!=''" class="valid-field">Looks
+          good!</div>
+      </div>
+      <div #catsForm class="form-group">
+        <label for="Category">Category Name (Separated by commas)</label>
+        <input [attr.disabled]="deletionMode ? 'disabled' : null" formControlName="categories" type="text" class="form-control"
+          id="Category" placeholder="ex. Home Appliance/Toys/...">
+        <div *ngIf="!deletionMode&&editingForm.controls.categories.invalid&&editingForm.controls.categories.touched"
+          class="invalid-field">
+          <p>Please meet the following requirement(s)</p>
+          <p *ngFor="let error of objKeys(editingForm.controls.categories.errors)">{{error}} </p>
+        </div>
+        <div *ngIf="!deletionMode&&editingForm.controls.categories.valid" class="valid-field">Looks good!</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="price">Price</label>
+          <div>
+            <i class="fas fa-dollar-sign"></i>
+            <input [attr.disabled]="deletionMode ? 'disabled' : null" formControlName="price" type="number" class="form-control price-tag"
+              id="price" placeholder="ex. 50">
+            <div *ngIf="!deletionMode&&editingForm.controls.price.invalid&&editingForm.controls.price.touched" class="invalid-field">
+              <p>Please meet the following requirement(s)</p>
+              <p *ngFor="let error of objKeys(editingForm.controls.price.errors)">{{error}} </p>
+            </div>
+            <div *ngIf="!deletionMode&&editingForm.controls.price.valid" class="valid-field">Looks good!</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="month">Month</label>
+          <input [attr.disabled]="deletionMode ? 'disabled' : null" formControlName="month" min=1 max=31 type="number"
+            class="form-control" id="Month" placeholder="ex. 4">
+          <div *ngIf="!deletionMode&&editingForm.controls.month.invalid&&editingForm.controls.month.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(editingForm.controls.month.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="!deletionMode&&editingForm.controls.month.valid" class="valid-field">Looks good!</div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="Day">Day</label>
+          <input [attr.disabled]="deletionMode ? 'disabled' : null" formControlName="day" min=1 max=31 type="number"
+            class="form-control" id="Day" placeholder="ex. 24">
+          <div *ngIf="!deletionMode&&editingForm.controls.day.invalid&&editingForm.controls.day.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(editingForm.controls.day.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="!deletionMode&&editingForm.controls.day.valid" class="valid-field">Looks good!</div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="year">Year</label>
+          <input [attr.disabled]="deletionMode ? 'disabled' : null" formControlName="year" min=2018 max=2050 type="number"
+            class="form-control" id="year" placeholder="ex. 2018">
+          <div *ngIf="!deletionMode&&editingForm.controls.year.invalid&&editingForm.controls.year.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(editingForm.controls.year.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="!deletionMode&&editingForm.controls.year.valid" class="valid-field">Looks good!</div>
+        </div>
+      </div>
+      <div class="btns-container">
+        <button *ngIf="deletionMode" (click)="prodService.removeProduct(displayedProduct);fetchProduct();reset()" class="form-btn btn btn-primary">Confirm
+          Deletion</button>
+        <button *ngIf="!deletionMode" type="submit" class="form-btn btn btn-primary">Confirm Changes</button>
+        <button *ngIf="!deletionMode" (click)="reset();prodService.shownProduct.showModal = false;" class="form-btn btn btn-danger">Reset
+          Form</button>
+      </div>
+    </form>
+  </div>
+</section>
+<ng-template #productNotFound>
+  <div *ngIf="!deletionMode" class="container centered-text alert alert-info fadeInLeft" style="margin-top:50px;">
+    <h1>Product Was Not Found, Select a Product From The Home Page.</h1>
+  </div>
+  <div *ngIf="deletionMode" class="container centered-text alert alert-success fadeInLeft" style="margin-top:50px;">
+    <h1>Please Select a Product From The Home Page to Delete</h1>
+  </div>
+</ng-template>
+<app-modal *ngIf="prodService.shownProduct.showModal"></app-modal>

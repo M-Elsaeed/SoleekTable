@@ -1,0 +1,47 @@
+.prod-Image {
+  width: 30%;
+  margin-bottom: 50px;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.wrapper {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 20px;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+
+.heading {
+  font-family: 'Permanent Marker', cursive !important;
+  font-size: 50px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.price-tag {
+  width: 90%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.btns-container {
+  margin: 0 auto;
+  width: 50%;
+  text-align: center;
+}
+
+.form-btn {
+  margin: 10px;
+}
+
+.fadeInUp {
+  animation-duration: 1s;
+}
+
+.fadeInLeft {
+  animation-duration: 1s;
+}
+
