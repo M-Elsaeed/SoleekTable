@@ -49,3 +49,24 @@ li {
   width: 50px !important;
   object-fit: contain;
 }
+
+.ng-touched.ng-invalid {
+  border-color: red;
+}
+
+.ng-touched.ng-valid {
+  border-color: green;
+}
+.valid-field {
+  width: 100%;
+  margin-bottom: .25rem;
+  font-size: 80%;
+  color: #28a745;
+}
+
+.invalid-field {
+  width: 100%;
+  margin-bottom: .25rem;
+  font-size: 80%;
+  color: firebrick;
+}
