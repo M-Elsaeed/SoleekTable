@@ -1,6 +1,4 @@
-<!-- Complete Validation -->
-<section class="wrapper">
-
+<section class="wrapper fadeInLeft">
   <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   <div class="centered-text heading">
@@ -10,31 +8,45 @@
     <img class="soleek-logo">
   </div>
   <div class="container">
-    <div *ngIf="allTouchedInvalid(addingForm)" class="alert alert-danger fadeInLeft">
-      Please Complete the Red-bordered form fields Correctly
-    </div>
     <form [formGroup]="addingForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="ProductSKU">Product SKU</label>
           <input formControlName="sku" type="text" class="form-control" id="ProductSKU" placeholder="ex. TS270PNK">
+          <div *ngIf="addingForm.controls.sku.invalid&&addingForm.controls.sku.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(addingForm.controls.sku.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="addingForm.controls.sku.valid" class="valid-field">Looks good!</div>
         </div>
         <div class="form-group col-md-6">
           <label for="productName">Product Name</label>
           <input formControlName="name" type="text" class="form-control" id="productName" placeholder="Product Name">
+          <div *ngIf="addingForm.controls.name.invalid&&addingForm.controls.name.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(addingForm.controls.name.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="addingForm.controls.name.valid" class="valid-field">Looks good!</div>
         </div>
       </div>
       <div class="form-group">
         <label for="imageURL">Product Image URL</label>
-        <input formControlName="image" type="url" class="form-control" id="imageURL" placeholder="ex. http://www.soleeklab.com/wp-content/uploads/Logo">
+        <input formControlName="image" type="url" class="form-control" id="imageURL" placeholder="ex. http://www.soleeklab.com/wp-content/uploads/Logo.png">
+        <div *ngIf="addingForm.controls.image.invalid&&addingForm.controls.image.touched" class="invalid-field">
+          <p>Please meet the following requirement(s)</p>
+          <p *ngFor="let error of objKeys(addingForm.controls.image.errors)">{{error}} </p>
+        </div>
+        <div *ngIf="addingForm.controls.image.valid&&addingForm.controls.image.value!=''" class="valid-field">Looks
+          good!</div>
       </div>
       <div #catsForm class="form-group">
         <label for="Category">Category Name (Separated by commas)</label>
-        <input  formControlName="categories" type="text" class="form-control" id="Category"
-          placeholder="ex. Home Appliance/Toys/...">
-      </div>
-      <div class="form-row">
-        <button class="btn btn-success" (click)="addCategory(catsForm)">Add Category</button>
+        <input formControlName="categories" type="text" class="form-control" id="Category" placeholder="ex. Home Appliance/Toys/...">
+        <div *ngIf="addingForm.controls.categories.invalid&&addingForm.controls.categories.touched" class="invalid-field">
+          <p>Please meet the following requirement(s)</p>
+          <p *ngFor="let error of objKeys(addingForm.controls.categories.errors)">{{error}} </p>
+        </div>
+        <div *ngIf="addingForm.controls.categories.valid" class="valid-field">Looks good!</div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-3">
@@ -42,34 +54,40 @@
           <div>
             <i class="fas fa-dollar-sign"></i>
             <input formControlName="price" type="number" class="form-control price-tag" id="price" placeholder="ex. 50">
+            <div *ngIf="addingForm.controls.price.invalid&&addingForm.controls.price.touched" class="invalid-field">
+              <p>Please meet the following requirement(s)</p>
+              <p *ngFor="let error of objKeys(addingForm.controls.price.errors)">{{error}} </p>
+            </div>
+            <div *ngIf="addingForm.controls.price.valid" class="valid-field">Looks good!</div>
           </div>
         </div>
 
         <div class="form-group col-md-3">
           <label for="month">Month</label>
-          <select formControlName="month" id="month" class="form-control">
-            <option selected>Choose...</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>3</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-          </select>
+          <input formControlName="month" min=1 max=31 type="number" class="form-control" id="Month" placeholder="ex. 4">
+          <div *ngIf="addingForm.controls.month.invalid&&addingForm.controls.month.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(addingForm.controls.month.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="addingForm.controls.month.valid" class="valid-field">Looks good!</div>
         </div>
         <div class="form-group col-md-3">
           <label for="Day">Day</label>
           <input formControlName="day" min=1 max=31 type="number" class="form-control" id="Day" placeholder="ex. 24">
+          <div *ngIf="addingForm.controls.day.invalid&&addingForm.controls.day.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(addingForm.controls.day.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="addingForm.controls.day.valid" class="valid-field">Looks good!</div>
         </div>
         <div class="form-group col-md-3">
           <label for="year">Year</label>
           <input formControlName="year" min=2018 max=2050 type="number" class="form-control" id="year" placeholder="ex. 2018">
+          <div *ngIf="addingForm.controls.year.invalid&&addingForm.controls.year.touched" class="invalid-field">
+            <p>Please meet the following requirement(s)</p>
+            <p *ngFor="let error of objKeys(addingForm.controls.year.errors)">{{error}} </p>
+          </div>
+          <div *ngIf="addingForm.controls.year.valid" class="valid-field">Looks good!</div>
         </div>
       </div>
       <div class="btns-container">
@@ -80,4 +98,4 @@
 
   </div>
 </section>
-<app-modal *ngIf="prodSubmitted"></app-modal>
+<app-modal *ngIf="prodService.shownProduct.showModal"></app-modal>

@@ -8,10 +8,18 @@ import { ProductsService } from '../products.service'
   styleUrls: ['./adding.component.css']
 })
 export class AddingComponent implements OnInit {
-  allInvTchd = false;
   addingForm: FormGroup;
-  private prodSubmitted = false
 
+/**
+ * Returns an array of Keys....For Use in Templates as Object is not recognized there.
+ * @param obj Object Whose Keys are to be obtained.
+ */
+  objKeys(obj) {
+    return Object.keys(obj);
+  }
+  /**
+   * Submits the Form to the Products Service to allow adding the newly created product.
+   */
   onSubmit() {
     if (this.addingForm.valid) {
       let controlVals = this.addingForm.controls;
@@ -26,8 +34,8 @@ export class AddingComponent implements OnInit {
       let newProd = {
         sku: controlVals.sku.value,
         name: controlVals.name.value,
-        image: controlVals.image.value,
-        categories: [controlVals.categories.value],
+        image: controlVals.image.value == "" ? "https://dummyimage.com/600x400/000/fff" : controlVals.image.value,
+        categories: controlVals.categories.value.split(","),
         price: controlVals.price.value,
         day: controlVals.day.value,
         month: controlVals.month.value,
@@ -35,7 +43,9 @@ export class AddingComponent implements OnInit {
       };
       console.log(newProd);
       this.prodService.addNewProduct(newProd);
-      this.prodSubmitted=true;
+      this.prodService.shownProduct.isSpecific = false;
+      this.prodService.shownProduct.product = newProd;
+      this.prodService.shownProduct.showModal = true;
       this.reset();
     }
     else {
@@ -44,43 +54,30 @@ export class AddingComponent implements OnInit {
     }
   }
 
-
+  /**
+   * Resets to provided model.
+   */
+  reset() {
+    this.addingForm.reset(this.addingForm = this.createFormGroupWithBuilder());
+  }
+  /**
+   * Returns a Form Group with the required Validators
+   */
+  createFormGroupWithBuilder() {
+    return this.formBuilder.group({
+      sku: ["", Validators.compose([Validators.minLength(5), Validators.required])],
+      name: ["", Validators.compose([Validators.minLength(3), Validators.required])],
+      image: ["", Validators.compose([Validators.minLength(3), Validators.pattern(/(https?:\/\/.*\.(?:png|jpg|gif))/i)])],
+      categories: ["", Validators.compose([Validators.minLength(3), Validators.required])],
+      price: ["", Validators.compose([Validators.required])],
+      day: ["", Validators.compose([Validators.required, Validators.min(1), Validators.max(31)])],
+      month: ["", Validators.required],
+      year: ["", Validators.compose([Validators.required, Validators.min(new Date().getFullYear()), Validators.max(2100)])],
+    });
+  }
   constructor(private formBuilder: FormBuilder, private prodService: ProductsService) { }
 
   ngOnInit() {
     this.addingForm = this.createFormGroupWithBuilder();
-  }
-
-  //if all are touched and invalid return true
-  allTouchedInvalid(myForm) {
-    let formControls = Object.values(Object.values(myForm)[6]);
-    let returnVal = true;
-    formControls.forEach(element => {
-      //console.log(element.invalid, element.touched, element.invalid && element.touched);
-      returnVal = returnVal && (element.invalid && element.touched);
-    });
-    if (returnVal)
-      this.allInvTchd = true;
-    return returnVal;
-  }
-  reset() {
-    // Resets to provided model
-    this.addingForm.reset(this.addingForm = this.createFormGroupWithBuilder());
-  }
-  createFormGroupWithBuilder() {
-    return this.formBuilder.group({
-      sku: ["", Validators.required],
-      name: ["", Validators.required],
-      image: ["", Validators.required],
-      categories: ["", Validators.required],
-      price: ["", Validators.required],
-      day: ["", Validators.required],
-      month: ["", Validators.required],
-      year: ["", Validators.required],
-    });
-  }
-
-  log(a) {
-    console.log(a);
   }
 }
