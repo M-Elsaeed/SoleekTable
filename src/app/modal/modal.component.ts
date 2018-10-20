@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 import { ProductsService } from 'D:/SoleekTable/src/app/products.service';
 @Component({
   selector: 'app-modal',
@@ -7,9 +8,7 @@ import { ProductsService } from 'D:/SoleekTable/src/app/products.service';
 })
 export class ModalComponent implements OnInit {
   displayedProduct = this.prodService.getProductToDisplay();
-  constructor(private prodService: ProductsService) {
-
-
+  constructor(private prodService: ProductsService, private router: Router) {
   }
 
   ngOnInit() {
@@ -25,7 +24,12 @@ export class ModalComponent implements OnInit {
     this.resetAnimation(htmlStructure);
 
     setTimeout(() => {
-      this.prodService.shownProduct.showModal = false
+      this.prodService.shownProduct = {
+        showModal: false,
+        isSpecific: false,
+        isEdited:false,
+        product: undefined
+      };
     }, 1000);
   }
   /**

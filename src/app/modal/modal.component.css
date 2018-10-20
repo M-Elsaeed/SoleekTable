@@ -12,6 +12,7 @@
 
 
 .main-container {
+  box-shadow: 5px 10px #303133 !important;
   padding: 10px;
   border-radius: 10px;
   border-color: black;

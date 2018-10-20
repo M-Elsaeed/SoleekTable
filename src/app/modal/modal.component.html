@@ -1,23 +1,25 @@
 <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 <div>
-
   <div class="opacity-container">
   </div>
   <div #htmlStructure class="main-container fadeInLeft">
-
+    <div class="container" style="text-align:center" *ngIf="!prodService.shownProduct.isSpecific">
+      <h1>Product Added Successfully</h1>
+    </div>
+    <div class="container" style="text-align:center" *ngIf="prodService.shownProduct.isEdited">
+        <h1>Product Edited Successfully</h1>
+    </div>
     <div class="frame half">
       <div class='prodImg-container'>
         <img class="product-img" [src]="displayedProduct.image">
       </div>
-      <p class="SKU-container">SKU : {{displayedProduct.sku|titlecase}}</p>
+      <p class="SKU-container">SKU : {{displayedProduct.sku}}</p>
     </div>
-
     <div class="half2">
       <div style="text-align:center">
         <h1>{{displayedProduct.name|titlecase}}</h1>
         <br><br>
       </div>
-
       <div class="container">
         <h4 class="inline-block">Price :<span class="invisible">ii</span></h4>
         <p class="inline-block">
@@ -39,9 +41,12 @@
         <p class="tag inline-block">{{displayedProduct.month}}</p>
         <span>/</span>
         <p class="tag inline-block">{{displayedProduct.year}}</p>
-
       </div>
-      <div class="container" style="text-align:center;"><button (click)="destructMe(htmlStructure)" class="btn btn-primary">Close</button></div>
+      <div class="container" style="text-align:center;">
+        <button (click)="destructMe(htmlStructure)" class="btn btn-primary">Close</button>
+        <button *ngIf="!prodService.shownProduct.isEdited" (click)="destructMe(htmlStructure);router.navigateByUrl('/Edit/Delete?sku=' + displayedProduct.sku)" class="btn btn-danger">Delete</button>
+        <button *ngIf="!prodService.shownProduct.isEdited" (click)="destructMe(htmlStructure);router.navigateByUrl('/Edit?sku=' + displayedProduct.sku)" class="btn btn-success">Edit</button>
+      </div>
     </div>
   </div>
 
