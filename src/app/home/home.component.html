@@ -1,0 +1,69 @@
+<section class="fadeInLeft" >
+
+  <section class="wrapper">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <div class="heading">
+      Our Products
+    </div>
+    <div class="container sol-container">
+      <img class="soleek-logo">
+    </div>
+    <div class="container">
+      <h4>Search by Product Name/SKU</h4>
+      <form [formGroup]="searchForm">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="ProductSKU">Product SKU</label>
+            <input #thisSKU (focusout)="resetForm()" formControlName="sku" type="text" class="form-control" id="ProductSKU"
+              placeholder="ex. TS270PNK">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="productName">Product Name</label>
+            <input #thisName (focusout)="resetForm()" formControlName="name" type="text" class="form-control" id="productName"
+              placeholder="Product Name">
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container" style="text-align:center">
+      <h1 class="centered">All Products</h1>
+      <h1 class="centered">Results</h1>
+      <br>
+      <div class="alert alert-info">Click on a Product To Show more info, Edit or Delete it</div>
+      <br>
+      <div class=" curved-light-border">
+        <p class="inline-block fifth">SKU</p>
+        <p class="inline-block fifth">Name</p>
+        <p class="inline-block fifth">Price</p>
+        <p class="inline-block fifth">Main Category</p>
+        <p class="inline-block fifth">Date</p>
+      </div>
+      <br>
+      <div *ngIf="searchForm.controls.sku.value!='' || (searchForm.controls.name.value==''&&searchForm.controls.sku.value=='') "
+        class=" curved-light-border">
+        <div class="hvr-grow-a fadeInUp item-div wow" (click)="showProductModal(item);" *ngFor="let item of prodService.findProductSKU(searchForm.controls.sku.value)">
+          <p class="inline-block fifth">{{item.sku|titlecase}}</p>
+          <p class="inline-block fifth">{{item.name|titlecase}}</p>
+          <p class="inline-block fifth">{{item.price}}</p>
+          <p class="inline-block fifth">{{item.categories[0]|titlecase}}</p>
+          <p class="inline-block fifth">{{item.day}}/ {{item.month}}/ {{item.year}}</p>
+        </div>
+      </div>
+      <div *ngIf="(searchForm.controls.name.value!='')" class="curved-light-border">
+        <div class="hvr-grow-a fadeInUp item-div wow" (click)="showProductModal(item);" *ngFor="let item of prodService.findProductName(searchForm.controls.name.value)">
+          <p class="inline-block fifth">{{item.sku|titlecase}}</p>
+          <p class="inline-block fifth">{{item.name|titlecase}}</p>
+          <p class="inline-block fifth">{{item.price}}</p>
+          <p class="inline-block fifth">{{item.categories[0]|titlecase}}</p>
+          <p class="inline-block fifth">{{item.day}}/ {{item.month}}/ {{item.year}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+<app-modal #modalView *ngIf="prodService.shownProduct.showModal"></app-modal>
