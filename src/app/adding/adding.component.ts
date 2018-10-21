@@ -10,10 +10,10 @@ import { ProductsService } from '../products.service'
 export class AddingComponent implements OnInit {
   addingForm: FormGroup;
 
-/**
- * Returns an array of Keys....For Use in Templates as Object is not recognized there.
- * @param obj Object Whose Keys are to be obtained.
- */
+  /**
+   * Returns an array of Keys....For Use in Templates as Object is not recognized there.
+   * @param obj Object Whose Keys are to be obtained.
+   */
   objKeys(obj) {
     return Object.keys(obj);
   }
@@ -71,7 +71,7 @@ export class AddingComponent implements OnInit {
       categories: ["", Validators.compose([Validators.minLength(3), Validators.required])],
       price: ["", Validators.compose([Validators.required])],
       day: ["", Validators.compose([Validators.required, Validators.min(1), Validators.max(31)])],
-      month: ["", Validators.required],
+      month: ["", Validators.compose([Validators.required, Validators.min(1), Validators.max(31)])],
       year: ["", Validators.compose([Validators.required, Validators.min(new Date().getFullYear()), Validators.max(2100)])],
     });
   }
