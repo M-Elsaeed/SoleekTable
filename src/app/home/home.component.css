@@ -85,7 +85,9 @@ p {
   margin-top: 2px;
   margin-bottom: 2px;
 }
-
+p.fifth{
+  overflow-wrap: break-word;
+}
 
 .hvr-grow-a {
   vertical-align: middle;
