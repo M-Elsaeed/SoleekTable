@@ -18,6 +18,7 @@ const routes: Routes = [
     { path: 'Add', component: AddingComponent },
     { path: 'Edit', component: EditComponent },
     { path: 'Edit/:Delete', component: EditComponent },
+    { path: "**", redirectTo: "/Home" }
 ];
 
 /**
