@@ -71,7 +71,7 @@ export class AddingComponent implements OnInit {
       categories: ["", Validators.compose([Validators.minLength(3), Validators.required])],
       price: ["", Validators.compose([Validators.required])],
       day: ["", Validators.compose([Validators.required, Validators.min(1), Validators.max(31)])],
-      month: ["", Validators.compose([Validators.required, Validators.min(1), Validators.max(31)])],
+      month: ["", Validators.compose([Validators.required, Validators.min(1), Validators.max(12)])],
       year: ["", Validators.compose([Validators.required, Validators.min(new Date().getFullYear()), Validators.max(2100)])],
     });
   }
