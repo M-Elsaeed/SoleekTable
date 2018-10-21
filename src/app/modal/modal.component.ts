@@ -8,7 +8,7 @@ import { ProductsService } from 'D:/SoleekTable/src/app/products.service';
 })
 export class ModalComponent implements OnInit {
   displayedProduct = this.prodService.getProductToDisplay();
-  constructor(private prodService: ProductsService, private router: Router) {
+  constructor(public prodService: ProductsService, public router: Router) {
   }
 
   ngOnInit() {

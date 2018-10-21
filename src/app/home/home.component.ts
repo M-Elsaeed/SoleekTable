@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   showProductModal(product) {
     this.prodService.shownProduct.showModal = true; this.prodService.shownProduct.isSpecific = true; this.prodService.shownProduct.product = product;
   }
-  constructor(private formBuilder: FormBuilder, private prodService: ProductsService) {
+  constructor(private formBuilder: FormBuilder, public prodService: ProductsService) {
 
   }
   ngOnInit() {

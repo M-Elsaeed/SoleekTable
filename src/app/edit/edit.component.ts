@@ -108,7 +108,7 @@ export class EditComponent implements OnInit {
     });
   }
   constructor(private activatedRoute: ActivatedRoute,
-    private prodService: ProductsService, private formBuilder: FormBuilder) {
+    public prodService: ProductsService, private formBuilder: FormBuilder) {
     this.editingForm = this.createFormGroupWithBuilder()
   }
   ngOnInit() {

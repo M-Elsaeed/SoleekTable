@@ -75,7 +75,7 @@ export class AddingComponent implements OnInit {
       year: ["", Validators.compose([Validators.required, Validators.min(new Date().getFullYear()), Validators.max(2100)])],
     });
   }
-  constructor(private formBuilder: FormBuilder, private prodService: ProductsService) { }
+  constructor(private formBuilder: FormBuilder, public prodService: ProductsService) { }
 
   ngOnInit() {
     this.addingForm = this.createFormGroupWithBuilder();
